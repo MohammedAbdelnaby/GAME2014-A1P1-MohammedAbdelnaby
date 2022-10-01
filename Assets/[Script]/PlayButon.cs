@@ -17,4 +17,12 @@ public class PlayButon : MonoBehaviour
     {
         SceneManager.LoadScene("GameOver");
     }
+    public void Instruction()
+    {
+        SceneManager.LoadScene("Instructions");
+    }
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
