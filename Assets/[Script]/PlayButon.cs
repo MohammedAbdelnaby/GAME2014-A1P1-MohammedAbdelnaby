@@ -9,4 +9,12 @@ public class PlayButon : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
 }
