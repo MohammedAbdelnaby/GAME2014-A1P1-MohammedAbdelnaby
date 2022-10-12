@@ -14,7 +14,6 @@ public class PlayerBullet : MonoBehaviour
     public BulletDirection BulletDirection;
     public float speed;
     public ScreenBounds bounds;
-    private Vector3 Velocity;
 
     // Start is called before the first frame update
     void Start()

@@ -6,6 +6,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private GameObject BulletPrefab;
+    [SerializeField]
+    private Transform SpawnPoint;
+    [SerializeField]
+    private float FireRate;
 
     public bool IsMobileInput;
     private float YPostion = -3.0f;
@@ -18,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         camera = Camera.main;
         IsMobileInput = Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.Android;
-
+        InvokeRepeating("FireBullet", 0.0f, FireRate);
     }
 
     void Update()
@@ -54,5 +60,10 @@ public class PlayerMovement : MonoBehaviour
             var distination = camera.ScreenToWorldPoint(touch.position);
             transform.position = Vector2.Lerp(transform.position, distination, Time.deltaTime * speed);
         }
+    }
+
+    void FireBullet()
+    {
+        var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint.position, Quaternion.identity);
     }
 }
