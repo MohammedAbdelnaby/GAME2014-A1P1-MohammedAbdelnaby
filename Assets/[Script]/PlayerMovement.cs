@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Player Properties")]
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -12,12 +13,12 @@ public class PlayerMovement : MonoBehaviour
     private Transform SpawnPoint;
     [SerializeField]
     private float FireRate;
+    private int health = 3;
 
-    public bool IsMobileInput;
+
     private float YPostion = -3.0f;
-
     public Boundry boundry;
-
+    public bool IsMobileInput;
     private Camera camera;
 
     private void Start()

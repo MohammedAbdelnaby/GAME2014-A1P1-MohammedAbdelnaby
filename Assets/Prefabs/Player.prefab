@@ -133,7 +133,7 @@ MonoBehaviour:
   speed: 5
   BulletPrefab: {fileID: 5830106917532464687, guid: a8bbc64de46882c47a507589bcc43595, type: 3}
   SpawnPoint: {fileID: 7672666}
-  FireRate: 2
+  FireRate: 0.2
   IsMobileInput: 0
   boundry:
     min: -1.88

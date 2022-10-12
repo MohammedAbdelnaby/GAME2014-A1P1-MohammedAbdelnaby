@@ -37,7 +37,7 @@ public class PlayerBullet : MonoBehaviour
         if ((transform.position.x > bounds.horizontal.max) ||
             (transform.position.x < bounds.horizontal.min) ||
             (transform.position.y > bounds.vertical.max) ||
-            (transform.position.x < bounds.vertical.min))
+            (transform.position.y < bounds.vertical.min))
         {
             Destroy(this.gameObject);
         }
@@ -74,5 +74,11 @@ public class PlayerBullet : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(collision.gameObject);
+        Destroy(this.gameObject);
     }
 }
