@@ -2,14 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public struct ScreenBounds
-{
-    public Boundry horizontal;
-    public Boundry vertical;
-}
-
-public class PlayerBullet : MonoBehaviour
+public class EnemyBullets : MonoBehaviour
 {
     public BulletDirection BulletDirection;
     public float speed;
@@ -74,5 +67,10 @@ public class PlayerBullet : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(this.gameObject);
     }
 }

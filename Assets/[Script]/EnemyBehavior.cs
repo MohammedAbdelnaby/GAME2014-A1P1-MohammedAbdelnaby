@@ -6,8 +6,25 @@ public class EnemyBehavior : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float FireRate;
+    [SerializeField]
+    private GameObject BulletPrefab;
+    [SerializeField]
+    private Transform SpawnPoint;
+    [SerializeField]
+    private Transform SpawnPoint2;
+    private int health = 3;
 
     public ScreenBounds bounds;
+
+    private bool Gun1 = false;
+
+    private void Start()
+    {
+        InvokeRepeating("FireBullet", 0.0f, FireRate);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -29,5 +46,42 @@ public class EnemyBehavior : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    void FireBullet()
+    {
+        if (Gun1)
+        {
+            var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint.position, Quaternion.identity);
+            Gun1 = false;
+        }
+        else
+        {
+            var bullet2 = GameObject.Instantiate(BulletPrefab, SpawnPoint2.position, Quaternion.identity);
+            Gun1 = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name.Contains("PlayerBullet"))
+        {
+            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+            sprite.color = Color.red;
+            Destroy(collision.gameObject);
+            health--;
+            Invoke("ResetColor", 0.1f);
+            if (health <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+
+        }
+    }
+
+    private void ResetColor()
+    {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        sprite.color = Color.white;
     }
 }
