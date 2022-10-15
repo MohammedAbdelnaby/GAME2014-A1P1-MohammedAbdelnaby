@@ -1371,6 +1371,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  FireRate: 0
+  BulletPrefab: {fileID: 0}
+  SpawnPoint: {fileID: 0}
+  SpawnPoint2: {fileID: 0}
   bounds:
     horizontal:
       min: -8
@@ -1459,7 +1463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3091034958311904715, guid: e5a08b02ab3a08944a135d13c9765e0d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 3091034958311904715, guid: e5a08b02ab3a08944a135d13c9765e0d, type: 3}
       propertyPath: m_LocalPosition.y

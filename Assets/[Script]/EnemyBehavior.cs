@@ -73,6 +73,10 @@ public class EnemyBehavior : MonoBehaviour
             Invoke("ResetColor", 0.1f);
             if (health <= 0)
             {
+                if (Random.Range(1,20) <= 5)
+                {
+                    Instantiate(Resources.Load<GameObject>("Prefabs/PowerUp"), transform.position, Quaternion.identity);
+                }
                 Destroy(this.gameObject);
             }
 
