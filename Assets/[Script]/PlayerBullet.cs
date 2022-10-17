@@ -14,6 +14,7 @@ public class PlayerBullet : MonoBehaviour
     public BulletDirection BulletDirection;
     public float speed;
     public ScreenBounds bounds;
+    public int Damage = 1;
 
     // Start is called before the first frame update
     void Start()

@@ -5,13 +5,14 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     [SerializeField]
-    private List<Sprite> sprites;
-
-    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
     [SerializeField]
     private float speed;
+
+    public Power power;
+
+    private bool DoMove = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,16 +22,28 @@ public class PowerUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (DoMove)
+        {
+            Move();
+        }
     }
 
     private void SetPowerUp()
     {
-        spriteRenderer.sprite = sprites[Random.Range(0, sprites.Count)];
+        Power[] pwr = Resources.LoadAll<Power>("Power");
+        power = pwr[Random.Range(0, pwr.Length)];
+        spriteRenderer.sprite = power.sprite;
     }
 
     private void Move()
     {
         transform.position += Vector3.down * speed * Time.deltaTime;
     }
+
+    public void PickUp()
+    {
+        DoMove = false;
+        transform.position = new Vector3(1.70299995f, -4.46299982f, 0.0f);
+    }
+
 }

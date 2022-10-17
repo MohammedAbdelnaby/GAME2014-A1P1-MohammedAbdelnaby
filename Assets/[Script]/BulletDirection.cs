@@ -10,3 +10,15 @@ public enum BulletDirection
     Left,
     LeftUp
 }
+
+[System.Serializable]
+public enum PowerTypes
+{
+    STRENGTH,
+    FIRERATE,
+    MOREGUNS,
+    SPEED,
+    HEALTH,
+    NONE
+}
+

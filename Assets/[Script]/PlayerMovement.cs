@@ -14,12 +14,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float FireRate;
     private int health = 3;
-
+    [SerializeField]
+    private SpriteRenderer Renderer;
+    [SerializeField]
+    private Power power = null;
 
     private float YPostion = -3.0f;
     public Boundry boundry;
     public bool IsMobileInput;
     private Camera camera;
+    private int Damage = 1;
+
 
     private void Start()
     {
@@ -66,5 +71,62 @@ public class PlayerMovement : MonoBehaviour
     void FireBullet()
     {
         var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint.position, Quaternion.identity);
+        bullet.GetComponent<PlayerBullet>().Damage = Damage;
+    }
+
+    public void SetPower(Power pwr)
+    {
+        pwr = power;
+    }
+
+    public Power GetPower()
+    {
+        return power;
+    }
+
+    private void HasPower()
+    {
+        switch (power.pwr)
+        {
+            case PowerTypes.FIRERATE:
+                CancelInvoke("FireBullet");
+                FireRate -= power.value;
+                InvokeRepeating("FireBullet", 0.0f, FireRate);
+                Debug.Log("FireRate");
+                break;
+            case PowerTypes.STRENGTH:
+                Damage += (int)power.value;
+                Debug.Log("Strength");
+                break;
+            case PowerTypes.MOREGUNS:
+                Debug.Log("MoreGuns");
+                break;
+            case PowerTypes.SPEED:
+                speed += power.value;
+                Debug.Log("Speed");
+                break;
+            case PowerTypes.HEALTH:
+                if (health != 3)
+                {
+                    health += (int)power.value;
+                }
+                Debug.Log("Health");
+                break;
+            case PowerTypes.NONE:
+                break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "PowerUp")
+        {
+            power = collision.gameObject.GetComponent<PowerUp>().power;
+            if (power != null)
+            {
+                HasPower();
+            }
+            collision.gameObject.GetComponent<PowerUp>().PickUp();
+        }
     }
 }
