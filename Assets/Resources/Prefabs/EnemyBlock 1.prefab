@@ -99,11 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8903909ce925af42b1c0896eb537323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  DamageOnDestroy: 0
+  speed: 1
   FireRate: 0
   BulletPrefab: {fileID: 0}
-  SpawnPoint: {fileID: 0}
-  SpawnPoint2: {fileID: 0}
+  SpawnPoint: []
+  health: 3
   Renderer: {fileID: 1940748486608524885}
   score: {fileID: 0}
   bounds:

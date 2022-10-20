@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Minutes: 1
-  Seconds: 5
+  Seconds: 30
   text: {fileID: 1067093595}
 --- !u!1 &1387349419
 GameObject:
@@ -1516,9 +1516,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnSpeed: 3
-  Prefab: {fileID: 3091034958311904713, guid: e5a08b02ab3a08944a135d13c9765e0d, type: 3}
+  BasicPrefab: {fileID: 3091034958311904713, guid: e5a08b02ab3a08944a135d13c9765e0d, type: 3}
+  BlockPrefab: {fileID: 5462331085281593082, guid: fce6b3734423fc04da8420f1a3682a77, type: 3}
   Parent: {fileID: 630257972}
   Level: 1
+  score: {fileID: 0}
 --- !u!4 &1771613444
 Transform:
   m_ObjectHideFlags: 0
@@ -1545,6 +1547,7 @@ GameObject:
   - component: {fileID: 1772691440}
   - component: {fileID: 1772691442}
   - component: {fileID: 1772691441}
+  - component: {fileID: 1772691443}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -1605,7 +1608,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'SCORE: 999'
+  m_Text: 'SCORE: 0'
 --- !u!222 &1772691442
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1614,6 +1617,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772691439}
   m_CullTransparentMesh: 1
+--- !u!114 &1772691443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772691439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70f7d0c01d6d37d46b79fa77c200fc00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1772691441}
 --- !u!1001 &2032032293
 PrefabInstance:
   m_ObjectHideFlags: 0

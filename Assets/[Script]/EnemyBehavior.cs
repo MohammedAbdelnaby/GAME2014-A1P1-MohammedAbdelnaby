@@ -14,9 +14,9 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField]
     private GameObject BulletPrefab;
     [SerializeField]
-    private Transform SpawnPoint;
+    private List<Transform> SpawnPoint;
+
     [SerializeField]
-    private Transform SpawnPoint2;
     private int health = 3;
     [SerializeField]
     private SpriteRenderer Renderer;
@@ -27,6 +27,7 @@ public class EnemyBehavior : MonoBehaviour
 
     private bool Gun1 = false;
 
+    private int SpawnPointIndex = 0;
     private void Start()
     {
         score = Component.FindObjectOfType<ScoreManager>();
@@ -62,19 +63,11 @@ public class EnemyBehavior : MonoBehaviour
 
     void FireBullet()
     {
-        if (BulletPrefab != null || SpawnPoint != null || SpawnPoint2 != null)
-        {
-            if (Gun1)
-            {
-                var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint.position, Quaternion.identity);
-                Gun1 = false;
-            }
-            else
-            {
-                var bullet2 = GameObject.Instantiate(BulletPrefab, SpawnPoint2.position, Quaternion.identity);
-                Gun1 = true;
-            }
-        }
+        if (!(SpawnPointIndex < SpawnPoint.Count))
+            SpawnPointIndex = 0;
+        var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint[SpawnPointIndex].position, Quaternion.identity);
+        SpawnPointIndex++;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -1067,7 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Minutes: 1
-  Seconds: 5
+  Seconds: 30
   text: {fileID: 1067093595}
 --- !u!1001 &1239221767
 PrefabInstance:
