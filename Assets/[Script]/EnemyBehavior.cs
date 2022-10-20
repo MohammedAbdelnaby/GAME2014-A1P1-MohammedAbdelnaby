@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    [SerializeField]
+    private bool DamageOnDestroy = false;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -18,12 +21,15 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField]
     private SpriteRenderer Renderer;
 
+    public ScoreManager score;
+
     public ScreenBounds bounds;
 
     private bool Gun1 = false;
 
     private void Start()
     {
+        score = Component.FindObjectOfType<ScoreManager>();
         InvokeRepeating("FireBullet", 0.0f, FireRate);
     }
 
@@ -46,22 +52,28 @@ public class EnemyBehavior : MonoBehaviour
             (transform.position.y > bounds.vertical.max) ||
             (transform.position.y < bounds.vertical.min))
         {
-            GameObject.Find("Player").GetComponent<PlayerMovement>().UpdateHealth(-1);
+            if (DamageOnDestroy)
+            {
+                GameObject.Find("Player").GetComponent<PlayerMovement>().UpdateHealth(-1);
+            }
             Destroy(this.gameObject);
         }
     }
 
     void FireBullet()
     {
-        if (Gun1)
+        if (BulletPrefab != null || SpawnPoint != null || SpawnPoint2 != null)
         {
-            var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint.position, Quaternion.identity);
-            Gun1 = false;
-        }
-        else
-        {
-            var bullet2 = GameObject.Instantiate(BulletPrefab, SpawnPoint2.position, Quaternion.identity);
-            Gun1 = true;
+            if (Gun1)
+            {
+                var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint.position, Quaternion.identity);
+                Gun1 = false;
+            }
+            else
+            {
+                var bullet2 = GameObject.Instantiate(BulletPrefab, SpawnPoint2.position, Quaternion.identity);
+                Gun1 = true;
+            }
         }
     }
 
@@ -73,15 +85,16 @@ public class EnemyBehavior : MonoBehaviour
             Destroy(collision.gameObject);
             health -= collision.gameObject.GetComponent<PlayerBullet>().Damage;
             Invoke("ResetColor", 0.1f);
+
             if (health <= 0)
             {
-                if (Random.Range(1,20) <= 21)
+                if (Random.Range(1, 20) <= 5 && SceneManager.GetActiveScene().name != "Main")
                 {
                     Instantiate(Resources.Load<GameObject>("Prefabs/PowerUp"), transform.position, Quaternion.identity);
                 }
                 Destroy(this.gameObject);
+                score.UpdateScore(100);
             }
-
         }
     }
 
