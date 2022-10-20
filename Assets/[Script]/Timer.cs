@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
@@ -20,14 +21,14 @@ public class Timer : MonoBehaviour
     void ClockTimer()
     {
         Seconds--;
+        if (Seconds <= 0 && Minutes <= 0)
+        {
+            //SceneManager.sceneLoaded()
+        }
         if (Seconds <= 0)
         {
             Minutes--;
             Seconds = 59;
-        }
-        if (Seconds <= 0 && Minutes <= 0)
-        {
-            Time.timeScale = 0;
         }
         SetText();
     }

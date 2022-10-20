@@ -46,6 +46,7 @@ public class EnemyBehavior : MonoBehaviour
             (transform.position.y > bounds.vertical.max) ||
             (transform.position.y < bounds.vertical.min))
         {
+            GameObject.Find("Player").GetComponent<PlayerMovement>().UpdateHealth(-1);
             Destroy(this.gameObject);
         }
     }
