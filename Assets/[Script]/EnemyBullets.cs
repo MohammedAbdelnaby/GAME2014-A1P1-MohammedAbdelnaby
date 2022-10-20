@@ -5,7 +5,11 @@ using UnityEngine;
 public class EnemyBullets : MonoBehaviour
 {
     public BulletDirection BulletDirection;
-    public float speed;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private int Damage = 1;
+
     public ScreenBounds bounds;
 
     // Start is called before the first frame update
@@ -71,6 +75,10 @@ public class EnemyBullets : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(this.gameObject);
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerMovement>().UpdateHealth(-Damage);
+            Destroy(this.gameObject);
+        }
     }
 }

@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4076001060955666518
 SpriteRenderer:
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 219070553
   m_SortingLayer: 7
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,6 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4076001060955666518}
   speed: 3
+  boundry:
+    min: -5.5
+    max: 5.5
   power: {fileID: 0}
 --- !u!50 &1951818396191940426
 Rigidbody2D:

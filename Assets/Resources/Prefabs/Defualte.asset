@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6343a03869de7f84f9e2e4dbd0bf9cb2, type: 3}
-  m_Name: Strength
+  m_Name: Defualte
   m_EditorClassIdentifier: 
-  pwr: 0
-  sprite: {fileID: 21300000, guid: c72212f58f855414ab0290c550a99623, type: 3}
-  strength: 2
+  pwr: 5
+  sprite: {fileID: 0}
+  strength: 0
   fireRate: 0
   health: 0
   speed: 0

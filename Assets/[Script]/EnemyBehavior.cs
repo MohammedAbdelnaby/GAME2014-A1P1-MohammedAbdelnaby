@@ -15,6 +15,8 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField]
     private Transform SpawnPoint2;
     private int health = 3;
+    [SerializeField]
+    private SpriteRenderer Renderer;
 
     public ScreenBounds bounds;
 
@@ -66,14 +68,13 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collision.gameObject.name.Contains("PlayerBullet"))
         {
-            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-            sprite.color = Color.red;
+            Renderer.color = Color.red;
             Destroy(collision.gameObject);
-            health--;
+            health -= collision.gameObject.GetComponent<PlayerBullet>().Damage;
             Invoke("ResetColor", 0.1f);
             if (health <= 0)
             {
-                if (Random.Range(1,20) <= 5)
+                if (Random.Range(1,20) <= 21)
                 {
                     Instantiate(Resources.Load<GameObject>("Prefabs/PowerUp"), transform.position, Quaternion.identity);
                 }
@@ -85,7 +86,6 @@ public class EnemyBehavior : MonoBehaviour
 
     private void ResetColor()
     {
-        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-        sprite.color = Color.white;
+        Renderer.color = Color.white;
     }
 }

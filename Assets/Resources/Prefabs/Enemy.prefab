@@ -239,6 +239,7 @@ MonoBehaviour:
   BulletPrefab: {fileID: 8464926437442032314, guid: 63e1d1f23d33dd541a9815cb1dfc6078, type: 3}
   SpawnPoint: {fileID: 8417487874850278013}
   SpawnPoint2: {fileID: 697280035972474176}
+  Renderer: {fileID: 3091034958311904712}
   bounds:
     horizontal:
       min: -8

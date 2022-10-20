@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PowerUp
   layers:
   - Default
   - TransparentFX
@@ -61,4 +62,10 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 219070553
+    locked: 0
+  - name: Slot
+    uniqueID: 1308414675
+    locked: 0
+  - name: InSlot
+    uniqueID: 2397395599
     locked: 0

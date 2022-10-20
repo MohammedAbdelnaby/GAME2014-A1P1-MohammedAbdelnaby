@@ -13,6 +13,14 @@ public class Power : ScriptableObject
     public Sprite sprite;
 
     [SerializeField]
-    public float value;
+    public float strength;
+    [SerializeField]
+    public float fireRate;
+    [SerializeField]
+    public float health;
+    [SerializeField]
+    public float speed;
+    [SerializeField]
+    public bool moreGuns;
 
 }

@@ -10,6 +10,8 @@ public class PowerUp : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    public Boundry boundry;
+
     public Power power;
 
     private bool DoMove = true;
@@ -26,6 +28,7 @@ public class PowerUp : MonoBehaviour
         {
             Move();
         }
+        CheckBoundry();
     }
 
     private void SetPowerUp()
@@ -40,10 +43,31 @@ public class PowerUp : MonoBehaviour
         transform.position += Vector3.down * speed * Time.deltaTime;
     }
 
+    public void CheckBoundry()
+    {
+        if ((transform.position.y > boundry.max) ||
+            (transform.position.y < boundry.min))
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     public void PickUp()
     {
         DoMove = false;
+        if (power.pwr == PowerTypes.HEALTH)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         transform.position = new Vector3(1.70299995f, -4.46299982f, 0.0f);
+        spriteRenderer.sortingLayerName = "InSlot";
+        GameObject InSlot = GameObject.Find("PowerPicked");
+        if (InSlot != null)
+        {
+            Destroy(InSlot);
+        }
+        name = "PowerPicked";
     }
 
 }

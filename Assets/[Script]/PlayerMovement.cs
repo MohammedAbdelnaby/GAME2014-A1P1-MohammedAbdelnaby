@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,25 +13,34 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform SpawnPoint;
     [SerializeField]
+    private Transform Gun1;
+    [SerializeField]
+    private Transform Gun2;
+    [SerializeField]
     private float FireRate;
     private int health = 3;
     [SerializeField]
+    private Power power;
+    [SerializeField]
     private SpriteRenderer Renderer;
     [SerializeField]
-    private Power power = null;
+    private List<SpriteRenderer> HealthRenderer;
 
     private float YPostion = -3.0f;
     public Boundry boundry;
     public bool IsMobileInput;
     private Camera camera;
     private int Damage = 1;
+    private bool moreGuns = false;
+    private float FireRateTime;
 
 
     private void Start()
     {
+        Renderer = this.GetComponent<SpriteRenderer>();
         camera = Camera.main;
         IsMobileInput = Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.Android;
-        InvokeRepeating("FireBullet", 0.0f, FireRate);
+        FireRateTime = FireRate;
     }
 
     void Update()
@@ -44,6 +54,52 @@ public class PlayerMovement : MonoBehaviour
             KeyboardInput();
         }
         Move();
+        FireBullet();
+    }
+
+    public void UpdateHealth(int value)
+    {
+        health += value;
+        switch (health)
+        {
+            case -1:
+                SceneManager.LoadScene("GameOver");
+                break;
+            case 0:
+                Renderer.color = Color.red;
+                HealthRenderer[0].enabled = false;
+                HealthRenderer[1].enabled = false;
+                HealthRenderer[2].enabled = false;
+                break;
+            case 1:
+                Renderer.color = Color.white;
+                HealthRenderer[0].enabled = false;
+                HealthRenderer[1].enabled = false;
+                HealthRenderer[2].enabled = true;
+                break;
+            case 2:
+                Renderer.color = Color.white;
+                HealthRenderer[0].enabled = false;
+                HealthRenderer[1].enabled = true;
+                HealthRenderer[2].enabled = true;
+                break;
+            case 3:
+                Renderer.color = Color.white;
+                HealthRenderer[0].enabled = true;
+                HealthRenderer[1].enabled = true;
+                HealthRenderer[2].enabled = true;
+                break;
+            default:
+                if (health > 4)
+                {
+                    health = 3;
+                }
+                else if(health < 0)
+                {
+                    health = 0;
+                }
+                break;
+        }
     }
 
     public void Move()
@@ -70,8 +126,21 @@ public class PlayerMovement : MonoBehaviour
 
     void FireBullet()
     {
-        var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint.position, Quaternion.identity);
-        bullet.GetComponent<PlayerBullet>().Damage = Damage;
+        FireRateTime -= Time.deltaTime;
+        if (FireRateTime <= 0.0f && !moreGuns)
+        {
+            var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint.position, Quaternion.identity);
+            bullet.GetComponent<PlayerBullet>().Damage = Damage;
+            FireRateTime = FireRate;
+        }
+        else if(FireRateTime <= 0.0f && moreGuns)
+        {
+            var bullet1 = GameObject.Instantiate(BulletPrefab, Gun1.position, Quaternion.identity);
+            bullet1.GetComponent<PlayerBullet>().Damage = Damage;
+            var bullet2 = GameObject.Instantiate(BulletPrefab, Gun2.position, Quaternion.identity);
+            bullet2.GetComponent<PlayerBullet>().Damage = Damage;
+            FireRateTime = FireRate;
+        }
     }
 
     public void SetPower(Power pwr)
@@ -86,34 +155,39 @@ public class PlayerMovement : MonoBehaviour
 
     private void HasPower()
     {
+        if (power.pwr != PowerTypes.HEALTH)
+        {
+            Damage = 1;
+            FireRate = 0.4f;
+            moreGuns = false;
+            speed = 5.0f;
+        }
         switch (power.pwr)
         {
             case PowerTypes.FIRERATE:
-                CancelInvoke("FireBullet");
-                FireRate -= power.value;
-                InvokeRepeating("FireBullet", 0.0f, FireRate);
-                Debug.Log("FireRate");
-                break;
+                FireRate -= power.fireRate;
+                return;
             case PowerTypes.STRENGTH:
-                Damage += (int)power.value;
+                Damage += (int)power.strength;
                 Debug.Log("Strength");
-                break;
+                return;
             case PowerTypes.MOREGUNS:
+                moreGuns = true;
                 Debug.Log("MoreGuns");
-                break;
+                return;
             case PowerTypes.SPEED:
-                speed += power.value;
+                speed += power.speed;
                 Debug.Log("Speed");
-                break;
+                return;
             case PowerTypes.HEALTH:
                 if (health != 3)
                 {
-                    health += (int)power.value;
+                    UpdateHealth((int)power.health);
                 }
                 Debug.Log("Health");
-                break;
+                return;
             case PowerTypes.NONE:
-                break;
+                return;
         }
     }
 
@@ -121,12 +195,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "PowerUp")
         {
-            power = collision.gameObject.GetComponent<PowerUp>().power;
+            PowerUp tempPower = collision.gameObject.GetComponent<PowerUp>();
+            power = tempPower.power;
             if (power != null)
             {
                 HasPower();
+                tempPower.PickUp();
             }
-            collision.gameObject.GetComponent<PowerUp>().PickUp();
         }
     }
 }
