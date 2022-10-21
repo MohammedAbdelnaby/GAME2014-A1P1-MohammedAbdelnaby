@@ -63,7 +63,7 @@ Transform:
   m_Children:
   - {fileID: 5796615172918356738}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &4152552845413407657
 SpriteRenderer:
@@ -130,7 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageOnDestroy: 1
-  speed: 9
+  speedY: 6
+  speedX: 4
   FireRate: 0.3
   BulletPrefab: {fileID: 8464926437442032314, guid: 63e1d1f23d33dd541a9815cb1dfc6078, type: 3}
   SpawnPoint:
@@ -140,8 +141,8 @@ MonoBehaviour:
   score: {fileID: 0}
   bounds:
     horizontal:
-      min: 0
-      max: 0
+      min: -1.9
+      max: 1.9
     vertical:
-      min: 0
-      max: 0
+      min: -5.5
+      max: 8

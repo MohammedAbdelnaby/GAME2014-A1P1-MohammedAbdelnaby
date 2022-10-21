@@ -235,8 +235,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageOnDestroy: 1
-  speed: 3
-  FireRate: 0.4
+  speedY: 2
+  speedX: 0
+  FireRate: 0.8
   BulletPrefab: {fileID: 8464926437442032314, guid: 63e1d1f23d33dd541a9815cb1dfc6078, type: 3}
   SpawnPoint:
   - {fileID: 8417487874850278013}

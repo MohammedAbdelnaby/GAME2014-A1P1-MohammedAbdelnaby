@@ -8,7 +8,9 @@ public class EnemyBehavior : MonoBehaviour
     [SerializeField]
     private bool DamageOnDestroy = false;
     [SerializeField]
-    private float speed;
+    private float speedY;
+    [SerializeField]
+    private float speedX;
     [SerializeField]
     private float FireRate;
     [SerializeField]
@@ -43,7 +45,16 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Move()
     {
-        transform.position += Vector3.down * speed * Time.deltaTime;
+        if (speedX == 0)
+        {
+            transform.position += Vector3.down * speedY * Time.deltaTime;
+        }
+        else
+        {
+            float horizontalLength = bounds.horizontal.max - bounds.horizontal.min;
+            transform.position = new Vector3(Mathf.PingPong(Time.time * speedX, horizontalLength) - bounds.horizontal.max,
+                                              transform.position.y + Vector3.down.y * speedY * Time.deltaTime, 0.0f);
+        }
     }
 
     public void CheckBoundry()
@@ -63,7 +74,9 @@ public class EnemyBehavior : MonoBehaviour
 
     void FireBullet()
     {
-        if (!(SpawnPointIndex < SpawnPoint.Count))
+        if (BulletPrefab == null)
+            return;
+        if ((SpawnPointIndex > SpawnPoint.Count-1))
             SpawnPointIndex = 0;
         var bullet = GameObject.Instantiate(BulletPrefab, SpawnPoint[SpawnPointIndex].position, Quaternion.identity);
         SpawnPointIndex++;

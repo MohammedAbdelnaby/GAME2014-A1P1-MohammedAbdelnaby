@@ -11,6 +11,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private GameObject BlockPrefab;
     [SerializeField]
+    private GameObject SpeedPrefab;
+    [SerializeField]
     private Transform Parent;
     [SerializeField]
     private int Level;
@@ -25,6 +27,12 @@ public class EnemyManager : MonoBehaviour
         {
             InvokeRepeating("SpawnEnemy", 0.0f, SpawnSpeed);
             InvokeRepeating("SpawnBlockEnemy", 0.0f, SpawnSpeed + 5.0f);
+        }
+        if (Level == 3)
+        {
+            InvokeRepeating("SpawnEnemy", 0.0f, SpawnSpeed);
+            InvokeRepeating("SpawnBlockEnemy", 0.0f, SpawnSpeed + 5.0f);
+            InvokeRepeating("SpawnSpeedEnemy", 0.0f, SpawnSpeed + 2.0f);
         }
     }
 
@@ -42,5 +50,9 @@ public class EnemyManager : MonoBehaviour
         {
             var enemy = Instantiate(BlockPrefab, new Vector3(1.20f, 8.0f, 0.0f), Quaternion.identity, Parent);
         }
+    }
+    private void SpawnSpeedEnemy()
+    {
+        var enemy = Instantiate(BasicPrefab, new Vector3(Random.Range(-1.88f, 1.88f), 8.0f, 0.0f), Quaternion.identity, Parent);
     }
 }
