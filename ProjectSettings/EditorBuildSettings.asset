@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/[Sense]/MainMenu.unity
     guid: 9cbfed34fdf94d24baf3868524dd810d
   - enabled: 1
-    path: Assets/[Sense]/Main.unity
+    path: Assets/[Sense]/Main 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/[Sense]/Instructions.unity

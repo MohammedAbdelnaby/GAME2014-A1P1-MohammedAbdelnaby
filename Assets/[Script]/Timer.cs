@@ -12,6 +12,8 @@ public class Timer : MonoBehaviour
     private int Seconds;
     [SerializeField]
     private Text text;
+    [SerializeField]
+    private int level;
 
     private void Start()
     {
@@ -23,7 +25,7 @@ public class Timer : MonoBehaviour
         Seconds--;
         if (Seconds <= 0 && Minutes <= 0)
         {
-            //SceneManager.sceneLoaded()
+            SceneManager.LoadScene("Main" + ++level);
         }
         if (Seconds <= 0)
         {

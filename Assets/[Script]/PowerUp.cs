@@ -69,5 +69,4 @@ public class PowerUp : MonoBehaviour
         }
         name = "PowerPicked";
     }
-
 }

@@ -1069,6 +1069,7 @@ MonoBehaviour:
   Minutes: 1
   Seconds: 30
   text: {fileID: 1067093595}
+  level: 2
 --- !u!1001 &1239221767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1519,9 +1520,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0ac017d18c8d5a47bc6d93226e7c1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnSpeed: 3
+  SpawnSpeed: 3.5
   BasicPrefab: {fileID: 3091034958311904713, guid: e5a08b02ab3a08944a135d13c9765e0d, type: 3}
   BlockPrefab: {fileID: 5462331085281593082, guid: fce6b3734423fc04da8420f1a3682a77, type: 3}
+  SpeedPrefab: {fileID: 0}
   Parent: {fileID: 630257972}
   Level: 2
   score: {fileID: 1772691443}

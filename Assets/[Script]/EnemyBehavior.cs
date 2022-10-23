@@ -72,7 +72,6 @@ public class EnemyBehavior : MonoBehaviour
                 GameObject.Find("Player").GetComponent<PlayerMovement>().UpdateHealth(-1);
             }
             Destroy(this.gameObject);
-            
         }
     }
 
@@ -98,7 +97,7 @@ public class EnemyBehavior : MonoBehaviour
 
             if (health <= 0)
             {
-                if (Random.value < 0.5f && SceneManager.GetActiveScene().name != "Main")
+                if (Random.value < 0.5f && SceneManager.GetActiveScene().name != "Main 1")
                 {
                     Instantiate(Resources.Load<GameObject>("Prefabs/PowerUp"), transform.position, Quaternion.identity);
                 }
@@ -121,8 +120,6 @@ public class EnemyBehavior : MonoBehaviour
                 score.UpdateScore(100);
                 Destroy(this.gameObject);
             }
-              
         }
     }
-
 }
