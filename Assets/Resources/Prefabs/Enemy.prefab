@@ -238,7 +238,7 @@ MonoBehaviour:
   DamageOnDestroy: 1
   speedY: 2
   speedX: 0
-  FireRate: 1
+  FireRate: 1.5
   BulletPrefab: {fileID: 8464926437442032314, guid: 63e1d1f23d33dd541a9815cb1dfc6078, type: 3}
   SpawnPoint:
   - {fileID: 8417487874850278013}

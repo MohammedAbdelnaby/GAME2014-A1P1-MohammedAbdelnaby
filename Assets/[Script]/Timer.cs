@@ -22,16 +22,16 @@ public class Timer : MonoBehaviour
 
     void ClockTimer()
     {
-        Seconds--;
         if (Seconds <= 0 && Minutes <= 0)
         {
-            SceneManager.LoadScene("Main" + ++level);
+            SceneManager.LoadScene("Main " + ++level);
         }
         if (Seconds <= 0)
         {
             Minutes--;
             Seconds = 59;
         }
+        Seconds--;
         SetText();
     }
 

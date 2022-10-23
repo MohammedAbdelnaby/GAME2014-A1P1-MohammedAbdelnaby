@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/[Sense]/Main 1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/[Sense]/Main 2.unity
+    guid: 3d6fa004e1377fa48aa240ca274ab698
+  - enabled: 1
+    path: Assets/[Sense]/Main 3.unity
+    guid: f354f54cf01e1264ab2ef2e50af84d48
+  - enabled: 1
+    path: Assets/[Sense]/Main 4.unity
+    guid: f29ecbf2ba45be24093d821985a68c28
+  - enabled: 1
     path: Assets/[Sense]/Instructions.unity
     guid: fda1dfa1f1669f343a8ccb85add6f551
   - enabled: 1
