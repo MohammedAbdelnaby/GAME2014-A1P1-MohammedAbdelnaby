@@ -42,6 +42,8 @@ GameObject:
   - component: {fileID: 2276398474599778752}
   - component: {fileID: 4152552845413407657}
   - component: {fileID: 523252681642629992}
+  - component: {fileID: 6536858702407266726}
+  - component: {fileID: -7129908355209624783}
   m_Layer: 0
   m_Name: FastEnemy
   m_TagString: Untagged
@@ -130,9 +132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageOnDestroy: 1
-  speedY: 6
-  speedX: 4
-  FireRate: 0.3
+  speedY: 1
+  speedX: 3
+  FireRate: 1.1
   BulletPrefab: {fileID: 8464926437442032314, guid: 63e1d1f23d33dd541a9815cb1dfc6078, type: 3}
   SpawnPoint:
   - {fileID: 5796615172918356738}
@@ -146,3 +148,38 @@ MonoBehaviour:
     vertical:
       min: -5.5
       max: 8
+--- !u!111 &6536858702407266726
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033875010229258504}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 327c548e61d6ea64e9e2a99932e722d9, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!95 &-7129908355209624783
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4033875010229258504}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a52fc1e863e357442a940801857bd407, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

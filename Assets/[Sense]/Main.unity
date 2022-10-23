@@ -1518,6 +1518,7 @@ MonoBehaviour:
   SpawnSpeed: 3
   BasicPrefab: {fileID: 3091034958311904713, guid: e5a08b02ab3a08944a135d13c9765e0d, type: 3}
   BlockPrefab: {fileID: 5462331085281593082, guid: fce6b3734423fc04da8420f1a3682a77, type: 3}
+  SpeedPrefab: {fileID: 0}
   Parent: {fileID: 630257972}
   Level: 1
   score: {fileID: 0}

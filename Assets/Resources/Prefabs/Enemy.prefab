@@ -97,7 +97,8 @@ GameObject:
   - component: {fileID: 2255609820723691764}
   - component: {fileID: 1426194009656276912}
   - component: {fileID: 2028390422}
-  - component: {fileID: 7103256513729137287}
+  - component: {fileID: 8752983946388435208}
+  - component: {fileID: -3879328994595372509}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -121,7 +122,7 @@ Transform:
   - {fileID: 8417487874850278013}
   - {fileID: 697280035972474176}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3091034958311904712
 SpriteRenderer:
@@ -237,7 +238,7 @@ MonoBehaviour:
   DamageOnDestroy: 1
   speedY: 2
   speedX: 0
-  FireRate: 0.8
+  FireRate: 1
   BulletPrefab: {fileID: 8464926437442032314, guid: 63e1d1f23d33dd541a9815cb1dfc6078, type: 3}
   SpawnPoint:
   - {fileID: 8417487874850278013}
@@ -252,7 +253,7 @@ MonoBehaviour:
     vertical:
       min: -6
       max: 10
---- !u!111 &7103256513729137287
+--- !u!111 &8752983946388435208
 Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -261,12 +262,32 @@ Animation:
   m_GameObject: {fileID: 3091034958311904713}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
+  m_Animation: {fileID: 7400000, guid: 327c548e61d6ea64e9e2a99932e722d9, type: 2}
   m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_WrapMode: 1
+  m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!95 &-3879328994595372509
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3091034958311904713}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a52fc1e863e357442a940801857bd407, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6066967577153220853
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8464926437442032315}
   - component: {fileID: 5042793895144373885}
   - component: {fileID: 1633165946251197530}
+  - component: {fileID: -4780633495423046011}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: Untagged
@@ -121,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletDirection: 4
   speed: 5
+  Damage: 1
   bounds:
     horizontal:
       min: -3
@@ -154,3 +156,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
+--- !u!111 &-4780633495423046011
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8464926437442032314}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 0399f82da2f6aee4495356677d52a6d5, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0

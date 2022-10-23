@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    [SerializeField]
-    private bool DamageOnDestroy = false;
+    public bool DamageOnDestroy = false;
     [SerializeField]
     private float speedY;
     [SerializeField]
@@ -17,6 +16,8 @@ public class EnemyBehavior : MonoBehaviour
     private GameObject BulletPrefab;
     [SerializeField]
     private List<Transform> SpawnPoint;
+
+    private Animator Anim;
 
     [SerializeField]
     private int health = 3;
@@ -32,6 +33,7 @@ public class EnemyBehavior : MonoBehaviour
     private int SpawnPointIndex = 0;
     private void Start()
     {
+        Anim = GetComponent<Animator>();
         score = Component.FindObjectOfType<ScoreManager>();
         InvokeRepeating("FireBullet", 0.0f, FireRate);
     }
@@ -41,6 +43,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         Move();
         CheckBoundry();
+        Die();
     }
 
     private void Move()
@@ -69,6 +72,7 @@ public class EnemyBehavior : MonoBehaviour
                 GameObject.Find("Player").GetComponent<PlayerMovement>().UpdateHealth(-1);
             }
             Destroy(this.gameObject);
+            
         }
     }
 
@@ -94,12 +98,10 @@ public class EnemyBehavior : MonoBehaviour
 
             if (health <= 0)
             {
-                if (Random.Range(1, 20) <= 5 && SceneManager.GetActiveScene().name != "Main")
+                if (Random.value < 0.5f && SceneManager.GetActiveScene().name != "Main")
                 {
                     Instantiate(Resources.Load<GameObject>("Prefabs/PowerUp"), transform.position, Quaternion.identity);
                 }
-                Destroy(this.gameObject);
-                score.UpdateScore(100);
             }
         }
     }
@@ -108,4 +110,19 @@ public class EnemyBehavior : MonoBehaviour
     {
         Renderer.color = Color.white;
     }
+
+    private void Die()
+    {
+        if (health <= 0)
+        {
+            Anim.SetBool("IsDying", true);
+            if(Anim.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
+            {
+                score.UpdateScore(100);
+                Destroy(this.gameObject);
+            }
+              
+        }
+    }
+
 }

@@ -22,3 +22,10 @@ public enum PowerTypes
     NONE
 }
 
+[System.Serializable]
+public enum BulletType
+{
+  PLAYER,
+  ENEMY
+}
+

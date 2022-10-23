@@ -23,12 +23,12 @@ public class EnemyManager : MonoBehaviour
     {
         if (Level == 1)
             InvokeRepeating("SpawnEnemy", 0.0f, SpawnSpeed);
-        if (Level == 2)
+        else if (Level == 2)
         {
             InvokeRepeating("SpawnEnemy", 0.0f, SpawnSpeed);
             InvokeRepeating("SpawnBlockEnemy", 0.0f, SpawnSpeed + 5.0f);
         }
-        if (Level == 3)
+        else if (Level == 3)
         {
             InvokeRepeating("SpawnEnemy", 0.0f, SpawnSpeed);
             InvokeRepeating("SpawnBlockEnemy", 0.0f, SpawnSpeed + 5.0f);
@@ -39,6 +39,7 @@ public class EnemyManager : MonoBehaviour
     private void SpawnEnemy()
     {
         var enemy = Instantiate(BasicPrefab, new Vector3(Random.Range(-1.88f, 1.88f), 8.0f, 0.0f), Quaternion.identity, Parent);
+        Debug.Log("Hello");
     }
     private void SpawnBlockEnemy()
     {
@@ -53,6 +54,6 @@ public class EnemyManager : MonoBehaviour
     }
     private void SpawnSpeedEnemy()
     {
-        var enemy = Instantiate(BasicPrefab, new Vector3(Random.Range(-1.88f, 1.88f), 8.0f, 0.0f), Quaternion.identity, Parent);
+        var enemy = Instantiate(SpeedPrefab, new Vector3(Random.Range(-1.88f, 1.88f), 8.0f, 0.0f), Quaternion.identity, Parent);
     }
 }
